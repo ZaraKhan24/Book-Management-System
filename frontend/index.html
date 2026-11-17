@@ -1,0 +1,250 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BookNest | Book Management</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="app-layout">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <div class="brand">
+                <div class="brand-icon">B</div>
+                <div>
+                    <h2>BookNest</h2>
+                    <span>LIBRARY MANAGER</span>
+                </div>
+            </div>
+
+            <p class="menu-label">MENU</p>
+
+            <nav>
+                <a href="#" class="nav-link active">
+                    <span>▦</span> Dashboard
+                </a>
+                <a href="#booksSection" class="nav-link">
+                    <span>▤</span> All Books
+                </a>
+                <a href="#addSection" class="nav-link">
+                    <span>＋</span> Add New Book
+                </a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="sidebar-note">
+                    <span>📚</span>
+                    <h4>Your Library</h4>
+                    <p>Manage your collection in one place.</p>
+                </div>
+                <p class="copyright">© 2026 BookNest</p>
+            </div>
+
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <header class="topbar">
+                <div>
+                    <p class="breadcrumb">Pages / Dashboard</p>
+                    <h1>Book Management</h1>
+                </div>
+
+                <div class="profile">
+                    <div class="profile-avatar">Z</div>
+                    <div>
+                        <strong>Zara</strong>
+                        <span>Administrator</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Welcome -->
+            <section class="welcome">
+                <div>
+                    <span class="welcome-tag">YOUR PERSONAL LIBRARY</span>
+                    <h2>Manage your books,<br>organize your knowledge.</h2>
+                    <p>Keep track of your collection and discover your next read.</p>
+                </div>
+                <div class="welcome-art">📚</div>
+            </section>
+
+            <!-- Statistics -->
+            <section class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-icon purple">▤</div>
+                    <p>Total Books</p>
+                    <h2 id="totalBooks">0</h2>
+                    <span>Books in your library</span>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon green">✦</div>
+                    <p>Categories</p>
+                    <h2 id="totalCategories">0</h2>
+                    <span>Different categories</span>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon orange">✎</div>
+                    <p>Authors</p>
+                    <h2 id="totalAuthors">0</h2>
+                    <span>Unique authors</span>
+                </div>
+
+            </section>
+
+            <!-- Add Book Form -->
+            <section class="panel add-panel" id="addSection">
+
+                <div class="section-heading">
+                    <div>
+                        <span class="section-tag">COLLECTION</span>
+                        <h2 id="formHeading">Add a New Book</h2>
+                        <p>Enter the book details below.</p>
+                    </div>
+                </div>
+
+                <form id="bookForm">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="bookTitle">Book Title</label>
+                            <input
+                                type="text"
+                                id="bookTitle"
+                                placeholder="Enter book title"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bookAuthor">Author Name</label>
+                            <input
+                                type="text"
+                                id="bookAuthor"
+                                placeholder="Enter author name"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bookCategory">Category</label>
+                            <select id="bookCategory" required>
+                                <option value="">Select category</option>
+                                <option>Fiction</option>
+                                <option>Self Development</option>
+                                <option>Technology</option>
+                                <option>Finance</option>
+                                <option>Education</option>
+                                <option>History</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" id="cancelEdit" class="btn btn-light hidden">
+                            Cancel
+                        </button>
+
+                        <button type="submit" class="btn btn-primary" id="submitButton">
+                            + Add Book
+                        </button>
+                    </div>
+
+                </form>
+            </section>
+
+            <!-- Books List -->
+            <section class="panel books-panel" id="booksSection">
+
+                <div class="section-heading books-heading">
+                    <div>
+                        <span class="section-tag">YOUR COLLECTION</span>
+                        <h2>All Books</h2>
+                        <p>View and manage your saved books.</p>
+                    </div>
+
+                    <span class="book-count" id="bookCount">0 Books</span>
+                </div>
+
+                <div class="table-wrapper">
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>BOOK TITLE</th>
+                                <th>AUTHOR</th>
+                                <th>CATEGORY</th>
+                                <th>ACTIONS</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="booksTable">
+                            <tr>
+                                <td colspan="4">Loading books...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </section>
+
+            <!-- Name API Section -->
+            <section class="panel name-panel">
+
+                <div class="section-heading">
+                    <div>
+                        <span class="section-tag">API DEMONSTRATION</span>
+                        <h2>Test Name API</h2>
+                        <p>Send your name to the Node.js server.</p>
+                    </div>
+                </div>
+
+                <div class="name-controls">
+                    <input type="text" id="userName" placeholder="Enter your name">
+
+                    <button class="btn btn-primary" id="getName">
+                        GET Name
+                    </button>
+
+                    <button class="btn btn-light" id="postName">
+                        POST Name
+                    </button>
+                </div>
+
+                <pre id="nameResponse">API response will appear here...</pre>
+
+            </section>
+
+            <footer>
+                BookNest — Simple Book Management System | Built with HTML, CSS, JavaScript & Express
+            </footer>
+
+        </main>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
